@@ -1,7 +1,7 @@
 ---
 title: "Alcohol vs Seat choice"
-author: "Your Name"
-date: "Fall 2020"
+author: "Angelica Romero"
+date: "Fall 2024"
 output: html_document
 ---
 
@@ -16,6 +16,14 @@ davisdata <- read.csv(file="UCDavis.csv")
 ```
 ## Our Goal is to answer this question Is there a difference between the alcohol consumed between the row
 ## you choose to sit in??
+
+##Method
+predict alcohol consumption base on where you sit      
+alcohol consumer is numerical variable        
+where you sit is categorical variable      
+     
+$H_0$ There is no difference between alcohol consumed and the row you choose to sit in.       
+$H_A$ There is a difference between alcohol consumed and the row you choose to sit in.     
 
 ## Now with ggplot - first select the basic data
 
@@ -35,9 +43,26 @@ basicCN + geom_boxplot()
 basicCN + geom_boxplot(notch=TRUE,outlier.color = "red") + stat_boxplot(geom ='errorbar') + labs(title="Fancy notch boxplot \n with 2 lines")
 ```
 
-## Numerical Summarys 
+The boxplot shows that people who sit in the back consume more alcohol than people who sit in the middle and front. 
 
+## Numerical Summarys 
+```{r}
+favstats(alcohol~Seat,data=ucdavis1)
+```
+The table shows that students who sit in the back have a higher mean of 8.56 compared to students who sit in the front with a mean of 1.80 and students who sit in the middle who have a mean of 3.33.  
+ 
 ## Inferential Tests
+
+```{r}
+model1 <- aov(alcohol~Seat,data=davisdata)
+summary.aov(model1)
+```
+
+The p-value is 0.000116 where is less than 0.05 therefore we reject the null hypothesis?
+
+```{r}
+plot(TukeyHSD(model1))
+```
 
 ## Conclusions
 
