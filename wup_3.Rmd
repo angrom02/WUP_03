@@ -58,12 +58,15 @@ model1 <- aov(alcohol~Seat,data=davisdata)
 summary.aov(model1)
 ```
 
-The p-value is 0.000116 where is less than 0.05 therefore we reject the null hypothesis?
+The p-value is 0.000116 where is less than 0.05 therefore we reject the null hypothesis.
 
 ```{r}
 plot(TukeyHSD(model1))
 ```
 
+The tukey test shows us that there is no difference middle-front seats compared to middle-back seats and front-back seats. 
+
 ## Conclusions
 
+We conclude that that there is a difference in alcohol consumed and which row you sit in therefore we reject the null hypothesis. The basic box plot shows that the mean of people who sit in the back row is higher than the mean of people who sit in the front row and people who sit in the middle row. With the Tukey test we can see that there is no difference in people who sit in the middle-front row but there is a difference who sit in the middle-back row and the front-back row. With this evidence, it can be proven that there is no difference in alcohol consumer and which row you sit in. 
 
